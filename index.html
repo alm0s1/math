@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مراجعة شاملة لطلاب الثاني عشر في مادة رياضيات الأساسية</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Arial,sans-serif;direction:rtl;background:#f4f6f9;color:#1a1a1a;min-height:100vh;}
+  .wrap{max-width:700px;margin:0 auto;padding:1.5rem 1rem;}
+  .card{background:#fff;border:1px solid #e0e0e0;border-radius:12px;padding:1.5rem;margin-bottom:1rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);}
+  h1{font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:.4rem;}
+  .sub{font-size:13px;color:#666;margin-bottom:1.1rem;}
+  label{font-size:13px;color:#555;display:block;margin-bottom:4px;}
+  input,select{width:100%;padding:9px 12px;border:1px solid #ccc;border-radius:8px;font-size:14px;font-family:Arial,sans-serif;background:#fff;color:#1a1a1a;margin-bottom:.9rem;direction:rtl;}
+  input:focus,select:focus{outline:none;border-color:#185FA5;box-shadow:0 0 0 3px rgba(24,95,165,.12);}
+  .btn{display:inline-block;padding:9px 20px;border-radius:8px;border:1px solid #ccc;background:#fff;color:#1a1a1a;font-size:13px;cursor:pointer;font-family:Arial,sans-serif;transition:background .12s;}
+  .btn:hover{background:#f0f0f0;}
+  .btn:disabled{opacity:.35;cursor:not-allowed;}
+  .btnp{background:#185FA5;color:#fff;border-color:#185FA5;}
+  .btnp:hover{background:#0C447C;}
+  .btns{background:#3B6D11;color:#fff;border-color:#3B6D11;}
+  .btns:hover{background:#27500A;}
+  .prog-bar{height:5px;background:#e8e8e8;border-radius:99px;margin-bottom:.9rem;overflow:hidden;}
+  .prog-fill{height:100%;border-radius:99px;transition:width .3s;}
+  .opt{padding:11px 15px;border:1px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;color:#1a1a1a;background:#fff;text-align:right;width:100%;margin-bottom:8px;font-family:Arial,sans-serif;transition:all .12s;}
+  .opt:hover{background:#f5f5f5;border-color:#aaa;}
+  .ubadge{display:inline-block;padding:3px 12px;border-radius:99px;font-size:12px;margin-bottom:.7rem;font-weight:700;}
+  .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+  .sc{background:#f5f7fa;border-radius:8px;padding:.9rem;text-align:center;}
+  .sv{font-size:20px;font-weight:700;}
+  .sl{font-size:11px;color:#888;margin-top:3px;}
+  .rev{padding:10px 13px;border-radius:8px;font-size:12px;margin-bottom:7px;background:#f9f9f9;}
+  .rev.c{border-right:4px solid #3B6D11;}
+  .rev.w{border-right:4px solid #E24B4A;}
+  .likert{display:flex;gap:7px;flex-wrap:wrap;}
+  .lb{padding:5px 12px;border:1px solid #ccc;border-radius:99px;font-size:12px;cursor:pointer;background:#fff;color:#333;transition:all .12s;}
+  .lb:hover{background:#f0f0f0;}
+  .lb.act{background:#185FA5;color:#fff;border-color:#185FA5;}
+  .stars{display:flex;gap:7px;}
+  .star{font-size:24px;cursor:pointer;color:#ccc;transition:color .1s;}
+  .star.lit{color:#EF9F27;}
+  .hidden{display:none;}
+  .tcell{padding:7px 9px;border:1px solid #e0e0e0;font-size:11px;text-align:right;}
+  .thead{background:#f0f0f0;font-weight:700;}
+  .badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;}
+  .badge.ok{background:#EAF3DE;color:#3B6D11;}
+  .badge.bad{background:#FCEBEB;color:#A32D2D;}
+  .urow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #eee;font-size:13px;}
+  .notice{font-size:12px;color:#555;background:#EEF4FF;padding:8px 12px;border-radius:8px;margin-bottom:1rem;border-right:3px solid #185FA5;}
+  .topbar{display:flex;justify-content:flex-end;margin-bottom:.75rem;}
+  /* نافذة كلمة السر */
+  .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:999;}
+  .overlay.hidden{display:none!important;}
+  .modal{background:#fff;border-radius:12px;padding:2rem;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.2);}
+  .modal h2{font-size:17px;font-weight:700;margin-bottom:.4rem;}
+  .modal p{font-size:13px;color:#666;margin-bottom:1rem;}
+  .pw-err{color:#A32D2D;font-size:12px;margin-top:.5rem;display:none;font-weight:700;}
+  /* تحسينات موبايل */
+  @media(max-width:480px){
+    .g3{grid-template-columns:1fr 1fr;}
+    .wrap{padding:1rem .75rem;}
+    table{font-size:10px;}
+    .tcell{padding:5px 6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- زر لوحة المعلم -->
+  <div class="topbar">
+    <button class="btn" onclick="openPw()" style="font-size:12px;display:flex;align-items:center;gap:5px;border-color:#7F77DD;color:#534AB7;">
+      🔒 لوحة المعلم
+    </button>
+  </div>
+
+  <!-- تسجيل الطالب -->
+  <div id="pg-reg" class="card">
+    <h1>مراجعة شاملة لطلاب الثاني عشر في مادة رياضيات الأساسية</h1>
+    <p class="sub">توزيع ذي الحدين والتوزيعات الهندسية • التكامل • التوزيع الطبيعي</p>
+    <p class="sub" style="margin-top:0.5rem;font-size:0.95em;">إعداد: أ. فاطمة حمد الحجري</p>
+    <p class="sub" style="margin-top:0.2rem;font-size:0.9em;opacity:0.85;">مشرفة رياضيات • محافظة شمال الشرقية</p>
+    <div class="notice">يمكنك التنقل بين الأسئلة وتغيير إجاباتك بحرية — النتائج تظهر فقط بعد إنهاء الاستبيان</div>
+    <label>الاسم الكامل</label>
+    <input type="text" id="i-name" placeholder="أدخل اسمك...">
+    <label>الجنس</label>
+    <select id="i-gen">
+      <option value="">— اختر —</option>
+      <option value="ذكر">ذكر</option>
+      <option value="أنثى">أنثى</option>
+    </select>
+    <label>اسم المحافظة</label>
+    <select id="i-city">
+      <option value="">— اختر المحافظة —</option>
+      <option value="مسقط">مسقط</option>
+      <option value="مسندم">مسندم</option>
+      <option value="البريمي">البريمي</option>
+      <option value="شمال الباطنة">شمال الباطنة</option>
+      <option value="جنوب الباطنة">جنوب الباطنة</option>
+      <option value="الظاهرة">الظاهرة</option>
+      <option value="الداخلية">الداخلية</option>
+      <option value="شمال الشرقية">شمال الشرقية</option>
+      <option value="جنوب الشرقية">جنوب الشرقية</option>
+      <option value="الوسطى">الوسطى</option>
+      <option value="ظفار">ظفار</option>
+    </select>
+    <button class="btn btnp" onclick="startQuiz()">ابدأ الاختبار ←</button>
+  </div>
+
+  <!-- الاختبار -->
+  <div id="pg-quiz" class="hidden">
+    <div class="card" style="padding:1rem 1.25rem;">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.8rem;" id="unit-tabs"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:.7rem;" id="qnav"></div>
+      <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+      <div style="display:flex;justify-content:space-between;">
+        <span id="qlbl" style="font-size:12px;color:#888;"></span>
+        <span id="acnt" style="font-size:12px;color:#888;"></span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
+        <span class="ubadge" id="ubadge"></span>
+        <span id="qpts" style="font-size:11px;padding:2px 10px;background:#EAF3DE;color:#3B6D11;border-radius:99px;font-weight:700;"></span>
+      </div>
+      <div id="qimg"></div>
+      <p id="qtext" style="font-size:15px;font-weight:700;line-height:1.8;margin-bottom:1.1rem;color:#1a1a1a;"></p>
+      <div id="qopts"></div>
+      <div style="margin-top:1rem;display:flex;gap:8px;">
+        <button class="btn" id="btn-prev" onclick="goQ(S.qi-1)">→ السابق</button>
+        <button class="btn btnp" id="btn-next" onclick="goQ(S.qi+1)">التالي ←</button>
+      </div>
+    </div>
+    <div class="card" style="text-align:center;padding:1.1rem;">
+      <p id="finish-msg" style="font-size:13px;margin-bottom:.8rem;color:#666;"></p>
+      <button class="btn btns" onclick="goSurvey()">إنهاء والانتقال للاستبيان ←</button>
+    </div>
+  </div>
+
+  <!-- استبيان -->
+  <div id="pg-survey" class="hidden">
+    <div class="card">
+      <h1 style="margin-bottom:.3rem;">استبيان</h1>
+      <p class="sub">أجب على الأسئلة — النتيجة تظهر بعد الإنهاء</p>
+
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:13px;font-weight:700;margin-bottom:7px;">١. كيف تقيّم صعوبة الاختبار؟</p>
+        <div class="likert" id="s1">
+          <button class="lb" onclick="pick('s1',this)">سهلة جداً</button>
+          <button class="lb" onclick="pick('s1',this)">سهلة</button>
+          <button class="lb" onclick="pick('s1',this)">متوسطة</button>
+          <button class="lb" onclick="pick('s1',this)">صعبة</button>
+          <button class="lb" onclick="pick('s1',this)">صعبة جداً</button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:13px;font-weight:700;margin-bottom:7px;">٢. هل حضّرت مسبقاً؟</p>
+        <div class="likert" id="s2">
+          <button class="lb" onclick="pick('s2',this)">لا أبداً</button>
+          <button class="lb" onclick="pick('s2',this)">قليلاً</button>
+          <button class="lb" onclick="pick('s2',this)">متوسط</button>
+          <button class="lb" onclick="pick('s2',this)">جيد</button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:13px;font-weight:700;margin-bottom:7px;">٣. أي الوحدات الأصعب؟</p>
+        <div class="likert" id="s3">
+          <button class="lb" onclick="pick('s3',this)">الرابعة</button>
+          <button class="lb" onclick="pick('s3',this)">الخامسة</button>
+          <button class="lb" onclick="pick('s3',this)">السادسة</button>
+          <button class="lb" onclick="pick('s3',this)">كلها</button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:13px;font-weight:700;margin-bottom:7px;">٤. هل تحب أسلوب الأسئلة التفاعلية؟</p>
+        <div class="likert" id="s4">
+          <button class="lb" onclick="pick('s4',this)">لا</button>
+          <button class="lb" onclick="pick('s4',this)">إلى حد ما</button>
+          <button class="lb" onclick="pick('s4',this)">نعم</button>
+          <button class="lb" onclick="pick('s4',this)">جداً</button>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <p style="font-size:13px;font-weight:700;margin-bottom:7px;">٥. تقييمك العام</p>
+        <div class="stars" id="stars">
+          <span class="star" data-v="1" onclick="rateStar(1)">★</span>
+          <span class="star" data-v="2" onclick="rateStar(2)">★</span>
+          <span class="star" data-v="3" onclick="rateStar(3)">★</span>
+          <span class="star" data-v="4" onclick="rateStar(4)">★</span>
+          <span class="star" data-v="5" onclick="rateStar(5)">★</span>
+        </div>
+      </div>
+      <button class="btn btnp" onclick="finishSurvey()">عرض نتيجتي ←</button>
+    </div>
+  </div>
+
+  <!-- نتيجة الطالب -->
+  <div id="pg-result" class="hidden">
+    <div class="card">
+      <div style="text-align:center;margin-bottom:1.5rem;">
+        <div style="width:90px;height:90px;border-radius:50%;background:#E6F1FB;border:4px solid #185FA5;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto .9rem;">
+          <span id="r-pct" style="font-size:26px;font-weight:700;color:#185FA5;"></span>
+          <span style="font-size:10px;color:#888;">من 100</span>
+        </div>
+        <p id="r-name" style="font-size:15px;font-weight:700;"></p>
+        <p id="r-msg" style="font-size:13px;color:#666;margin-top:3px;"></p>
+      </div>
+
+      <p style="font-size:13px;font-weight:700;margin-bottom:.7rem;padding-bottom:7px;border-bottom:1px solid #eee;">درجات كل وحدة</p>
+      <div id="unit-scores" style="margin-bottom:1.2rem;"></div>
+
+      <div class="g3" style="margin-bottom:1.2rem;">
+        <div class="sc"><div class="sv" id="r-cor" style="color:#3B6D11;"></div><div class="sl">صحيح</div></div>
+        <div class="sc"><div class="sv" id="r-wr" style="color:#A32D2D;"></div><div class="sl">خطأ</div></div>
+        <div class="sc"><div class="sv" id="r-sc" style="color:#185FA5;"></div><div class="sl">النقاط</div></div>
+      </div>
+
+      <p style="font-size:13px;font-weight:700;margin-bottom:.7rem;padding-bottom:7px;border-bottom:1px solid #eee;">مراجعة تفصيلية</p>
+      <div id="r-list"></div>
+      <div style="margin-top:1.2rem;">
+        <button class="btn btnp" onclick="restart()">إعادة الاختبار</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- لوحة المعلم -->
+  <div id="pg-teacher" class="hidden">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+        <h1>🔒 لوحة المعلم</h1>
+        <button class="btn" onclick="showPrev()" style="font-size:12px;">← رجوع</button>
+      </div>
+      <div class="g3" style="margin-bottom:1.1rem;">
+        <div class="sc"><div class="sv" id="t-total"></div><div class="sl">المشاركون</div></div>
+        <div class="sc"><div class="sv" id="t-avg"></div><div class="sl">متوسط الدرجات</div></div>
+        <div class="sc"><div class="sv" id="t-pass"></div><div class="sl">ناجح ≥60%</div></div>
+      </div>
+      <p style="font-size:13px;font-weight:700;margin-bottom:.7rem;">سجل الطلاب</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;min-width:700px;">
+          <thead>
+            <tr>
+              <td class="tcell thead">الاسم</td>
+              <td class="tcell thead">جنس</td>
+              <td class="tcell thead">محافظة</td>
+              <td class="tcell thead">الإجمالي</td>
+              <td class="tcell thead">و٤</td>
+              <td class="tcell thead">و٥</td>
+              <td class="tcell thead">و٦</td>
+              <td class="tcell thead">صح</td>
+              <td class="tcell thead">خطأ</td>
+              <td class="tcell thead">صعوبة</td>
+              <td class="tcell thead">تحضير</td>
+              <td class="tcell thead">تقييم</td>
+            </tr>
+          </thead>
+          <tbody id="t-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- نافذة كلمة السر -->
+<div class="overlay hidden" id="pw-overlay">
+  <div class="modal">
+    <h2>🔒 دخول المعلم</h2>
+    <p>أدخل كلمة السر للوصول إلى لوحة المعلم</p>
+    <input type="password" id="pw-input" placeholder="كلمة السر..." autocomplete="off" onkeydown="if(event.key==='Enter')checkPw()" style="direction:ltr;text-align:left;letter-spacing:1px;">
+    <p class="pw-err" id="pw-err">❌ كلمة السر غلط، حاول مرة أخرى</p>
+    <div style="display:flex;gap:8px;margin-top:.9rem;">
+      <button class="btn btnp" onclick="checkPw()">دخول</button>
+      <button class="btn" onclick="closePw()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script>
+
+const IMAGES = {
+  img_q3: 'data:image/png;base64,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',
+  img_q36: 'data:image/png;base64,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yW1SHmBG4lrfzkU70i15xLC7TVUVyr79eXTSB7JJg0lgG/Lr9q2q8U2v1bR/Ab3J4ptfq2j+A3uQUZ9a3APV92/QzvT61uAer7t+hnerz8U2v1bR/Ab3J4ptfq2j+A3uQUX9azAPV92/QzvXTufSX0vucDoLhYq+qjcNi2SFjtx7ytgPFNr9W0fwG9yeKbX6to/gN7kGoF/zro9XaR0ww+4UczjuZacFh/Z4USqcowOjla7H8hym3saeINLuXX7Xlb1+KbV6to/gN7k8U2r1bR/Ab3IKDtXSkwOittNSSUt4mfDE1jpHMbu4gbb9a7X1rMA9X3b9DO9Xl4ptXq2j+A3uWfFNr9W0fwG9yDXHN+kVptlOMV1jrLbdCyqiLQ4sb5DtuRHlela42HU3L8RuT243kFwjo2PIjie4OaW78twQfQt+NRbXWnEK+HFrHQ1F1miMdPxiONrCeXESdtgPZufYqBxTop1FbOblm1+4KiV5fLT0QDmknn/UftPYg7OmfSlhqn09tyi11EtS9wZ4ana07nbrI5LZmy3CK6WuC4QMkZHMwOaJBs4A+kKN4VpviOJ00cVps9Kx7Nv810TS88vTspe1oAAA5BBlERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQE2HoCIgIiICIiAiIg//Z',
+  img_q6: 'data:image/png;base64,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'
+};
+
+
+function toFrac(s) {
+  // خريطة الأرقام المنخفضة والمرتفعة
+  const subMap = {'₀':'٠','₁':'١','₂':'٢','₃':'٣','₄':'٤','₅':'٥','₆':'٦','₇':'٧','₈':'٨','₉':'٩','₋':'−'};
+  const supMap = {'⁰':'٠','¹':'١','²':'٢','³':'٣','⁴':'٤','⁵':'٥','⁶':'٦','⁷':'٧','⁸':'٨','⁹':'٩','⁻':'−'};
+
+  s = s.replace(/∫([₀₁₂₃₄₅₆₇₈₉₋]*)([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]*)/g, function(m, sub, sup) {
+    let lower = sub.split('').map(c => subMap[c]||c).join('');
+    let upper = sup.split('').map(c => supMap[c]||c).join('');
+    if(!lower && !upper) return '∫';
+    return '<span style="position:relative;display:inline-flex;align-items:center;vertical-align:middle;margin:0 2px 0 14px;">'
+      +'<span style="font-size:0.7em;position:absolute;top:-0.7em;left:-14px;white-space:nowrap;">'+upper+'</span>'
+      +'<span style="font-size:0.7em;position:absolute;bottom:-0.4em;left:-14px;white-space:nowrap;">'+lower+'</span>'
+      +'<span style="font-size:1.6em;line-height:1;display:inline-block;transform:scaleX(-1);">∫</span>'
+      +'</span>';
+  });
+
+  // كسور من نوع: أي شيء / أي شيء (مع استثناء الأقواس والأرقام العشرية)
+  s = s.replace(/([^\s\/<>،•∫()٠-٩\d][^\s\/<>،•∫()]*)\/([^\s\/<>،•∫()]+)/g, function(m, n, d) {
+    return '<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">'+n+'</span><span style="padding:0 4px;text-align:center;">'+d+'</span></span>';
+  });
+  return s;
+}
+
+const TEACHER_PW = 'Ff@94433574';
+
+const UC = {
+  u4:{name:'الرابعة', bg:'#E6F1FB', tx:'#185FA5', pf:'#185FA5'},
+  u5:{name:'الخامسة', bg:'#EAF3DE', tx:'#3B6D11', pf:'#3B6D11'},
+  u6:{name:'السادسة', bg:'#FAEEDA', tx:'#BA7517', pf:'#BA7517'}
+};
+
+const QS = [
+  // ===== الوحدة الرابعة =====
+  {u:'u4',pts:5,ans:0,text:'س ~ ث(٣، ٠٫٦) • القيمة المتوقعة ت(س) تساوي',opts:['١٫٨','١٫٢','٠٫٦','٠٫٤'],hint:'ت(س) = ن×ب = ٣×٠٫٦ = ١٫٨'},
+  {u:'u4',pts:5,ans:0,text:'س ~ هندسي(٠٫٨) • الشكل المقترن بـ ل(س > ٤)',opts:['(١-٠٫٨)⁴','(١-٠٫٢)⁴','١-(٠٫٨)⁴','١-(٠٫٢)⁴'],hint:'ل(س>٤)=(١-ب)⁴=(١-٠٫٨)⁴'},
+  {u:'u4',pts:5,ans:2,img:'img_q3',text:'القرص في الشكل مقسّم إلى ثلاثة أجزاء متساوية (أ، ب، ج). إذا دُوِّر القرص مرة واحدة • ما احتمال وقوف المؤشر على (أ)؟',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>'],hint:'٣ أجزاء متساوية → ل(أ) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>'},
+  {u:'u4',pts:5,ans:3,text:'ص ~ هندسي(٠٫٢٣٧) • القيمة المتوقعة لأقرب ثلاث منازل',opts:['٠٫٤٧٤','٠٫٧٦٣','١٫٣١١','٤٫٢١٩'],hint:'ت(ص) = ١/ب = ١/٠٫٢٣٧ ≈ ٤٫٢١٩'},
+  {u:'u4',pts:5,ans:2,text:'س ~ هندسي(٠٫٨٥) • قيمة المنوال',opts:['٠٫١٥','٠٫٨٥','١','٢'],hint:'منوال التوزيع الهندسي = ١ دائماً'},
+  {u:'u4',pts:5,ans:3,img:'img_q6',text:'القرص في الشكل سداسي منتظم • إذا دُوِّر القرص مرة واحدة • احتمال وقوف المؤشر على رمز النجمة',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٦</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'],hint:'القرص سداسي = ٦ قطاعات → ٣ نجوم من ٦ → ل(نجمة) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
+  {u:'u4',pts:7,ans:0,text:'س ~ ث(٣، ٠٫٣٦) • قيمة ل(س ≠ ٢) لأقرب ثلاث منازل',opts:['٠٫٧٥١','٠٫٠٥٧','٠٫٠٣٩','٠٫٩٦١'],hint:'ل(س=٢)=C(٣,٢)×(٠٫٣٦)²×(٠٫٦٤)≈٠٫٢٤٩ → ل(س≠٢)=٠٫٧٥١'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ع²(س)=١٤٫٤، ت(س)=٢٤ • قيمة ن',opts:['٣٠','٤٥','٦٠','٧٥'],hint:'ت=ن×ب=٢٤، ع²=ن×ب×(١-ب)=١٤٫٤ → (١-ب)=١٤٫٤/٢٤=٠٫٦ → ب=٠٫٤ → ن=٢٤/٠٫٤=٦٠'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(١٠، ٠٫٢) • قيمة التوقع ت(س)',opts:['١','١٫٦','٢','١٫٧'],hint:'ت(س) = ن×ب = ١٠×٠٫٢ = ٢'},
+  {u:'u4',pts:7,ans:1,text:'س ~ ث(٥، ٠٫٤) • قيمة ل(س = ٣) لأقرب ثلاث منازل',opts:['٠٫١٢٣','٠٫٢٣٠','٠٫٣٤٦','٠٫٤٥٦'],hint:'ل(س=٣)=C(٥,٣)×(٠٫٤)³×(٠٫٦)²=١٠×٠٫٠٦٤×٠٫٣٦≈٠٫٢٣٠'},
+  {u:'u4',pts:5,ans:0,text:'س ~ ث(٦، ٠٫٢) • احتمال ل(٢) لأقرب ثلاث منازل',opts:['٠٫٢٤٦','٠٫٣٩٣','٠٫٠١٦','٠٫٠١٥'],hint:'ل(س=٢)=C(٦,٢)×(٠٫٢)²×(٠٫٨)⁴=١٥×٠٫٠٤×٠٫٤٠٩٦≈٠٫٢٤٦'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن، ٠٫٤)، ت(س) = ٣٫٦ • قيمة ن',opts:['١','٤','٩','٦'],hint:'ت(س)=ن×ب → ٣٫٦=ن×٠٫٤ → ن=٩'},
+  {u:'u4',pts:5,ans:1,text:'س ~ ث(ن،٠٫٣)، ل(٠)=٠٫١٦٨٠٧ • قيمة ن',opts:['٣','٥','٧','٩'],hint:'ل(س=٠)=(١-ب)ⁿ=(٠٫٧)ⁿ=٠٫١٦٨٠٧ → (٠٫٧)⁵=٠٫١٦٨٠٧ → ن=٥'},
+  {u:'u4',pts:7,ans:3,text:'س ~ هندسي(٠٫٣٦) • قيمة ل(٦) لأقرب ثلاث منازل',opts:['٠٫٠٢٥','٠٫٠٥٧','٠٫٩٦١','٠٫٠٣٩'],hint:'ل(س=٦)=(٠٫٦٤)⁵×٠٫٣٦≈٠٫٠٣٩'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ت(س)=٤٫٥، ع²(س)=٣٫١٥ • قيمة ن',opts:['١','٦','١٥','٩'],hint:'ب=١−ع²/ت=٠٫٣ → ن=ت/ب=٤٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٠</span></span>٫٣=١٥'},
+  // ===== الوحدة الخامسة =====
+  {u:'u5',pts:5,ans:1,text:'دص/دس = ٢ • الشكل المقترن بـ ص بدلالة س',opts:['ص=س+جـ','ص=٢س+جـ','ص=س²+جـ','ص=٢س²+جـ'],hint:'∫٢دس = ٢س + جـ'},
+  {u:'u5',pts:5,ans:0,text:'دص/دس = س⁷ • الشكل المقترن بـ ص بدلالة س',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٨</span></span>س⁸+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٧</span></span>س⁸+جـ','٨س⁶+جـ','٦س⁷+جـ'],hint:'∫سⁿ = سⁿ⁺¹/(ن+١)+جـ → ∫س⁷ = س⁸/٨+جـ'},
+  {u:'u5',pts:7,ans:1,text:'د´(س) = س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">١</span><span style="padding:0 1px;">٣</span></span></span>، د(١) = ١ • قيمة ثابت التكامل جـ',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٢</span><span style="padding:0 4px;text-align:center;">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٤</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٣</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٢</span><span style="padding:0 4px;text-align:center;">٣</span></span>'],hint:'∫س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">١</span><span style="padding:0 1px;">٣</span></span></span>=(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٣</span><span style="padding:0 4px;text-align:center;">٤</span></span>)س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">٤</span><span style="padding:0 1px;">٣</span></span></span>+جـ. عند س=١: ١=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٣</span><span style="padding:0 4px;text-align:center;">٤</span></span>+جـ → جـ=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٤</span></span>'},  {u:'u5',pts:5,ans:0,text:'قيمة ∫₋₁¹ ٢س  دس',opts:['صفر','١','٢','٤'],hint:'٢س دالة فردية → التكامل من -ن إلى ن = صفر'},
+  {u:'u5',pts:5,ans:2,text:'قيمة ∫₂⁴ ٢س  دس',opts:['٤','٨','١٢','١٦'],hint:'[س²]₂⁴ = ١٦ − ٤ = ١٢'},
+  {u:'u5',pts:5,ans:1,text:'د(٤)=٠، د(٢)=−٣ • قيمة ∫₂⁴ د´(س)  دس',opts:['−٨','٣','٨','−٣'],hint:'∫₂⁴ د´(س)دس = د(٤)−د(٢) = ٠−(−٣) = ٣'},
+  {u:'u5',pts:5,ans:3,text:'قيمة ∫₁⁴ <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٨</span><span style="padding:0 4px;text-align:center;">س²</span></span>  دس',opts:['١٢','−١٢','−٦','٦'],hint:'[−٨/س]₁⁴ = −٢−(−٨) = ٦'},
+  {u:'u5',pts:7,ans:3,text:'د´(س)=٤س³−٨س+٢، د(−١)=١٠ • الشكل المقترن بـ د(س)',opts:['د(س)=س⁴−٤س²+٢س+١','د(س)=س⁴−٤س²+٢س+١١','د(س)=س⁴−٤س²+٢س+١٧','د(س)=س⁴−٤س²+٢س+١٥'],hint:'∫(٤س³−٨س+٢)=س⁴−٤س²+٢س+جـ. عند س=−١: ١−٤−٢+جـ=١٠ → جـ=١٥'},
+  {u:'u5',pts:5,ans:0,text:'قيمة ∫₁³ (٨س+٣)  دس',opts:['٣٨','٤٥','١٦','٣٠'],hint:'[٤س²+٣س]₁³=(٣٦+٩)−(٤+٣)=٤٥−٧=٣٨'},
+  {u:'u5',pts:5,ans:2,text:'دص/دس = س² • الشكل المقترن بـ ص بدلالة س',opts:['ص=٢س+جـ','ص=س²+جـ','ص=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>س³+جـ','ص=س³+جـ'],hint:'∫س²دس = س³/٣ + جـ'},
+  {u:'u5',pts:5,ans:1,text:'دص/دس = ٦س⁻⁷ • الشكل المقترن بـ ص بدلالة س',opts:['−٢س⁻⁶+جـ','−س⁻⁶+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٦</span><span style="padding:0 3px">٨</span></span>س⁻⁸+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٤</span></span>س⁻⁶+جـ'],hint:'∫٦س⁻⁷دس = −س⁻⁶+جـ'},
+  {u:'u5',pts:5,ans:2,text:'ص = (<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">س⁴</span></span> − <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">س³</span></span>) • التكامل غير المحدود',opts:['−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢</span></span>س⁻³+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣س³</span></span>+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢س²</span></span>+جـ'],hint:'∫(٢س⁻⁴−٩س⁻³)=−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢</span></span>س⁻³+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ'},
+  {u:'u5',pts:7,ans:1,text:'د(٢)=٥، د(٤)=٠ • قيمة ∫₂⁴ د´(س)دس',opts:['٥','−٥','٠','١٠'],hint:'∫₂⁴ د´(س)دس = د(٤)−د(٢) = ٠−٥ = −٥'},
+  {u:'u5',pts:5,ans:3,text:'قيمة ∫₋₂⁴ (س³+٣س)دس',opts:['٣٠','−٧٨','١٠','٧٨'],hint:'[س⁴/٤+٣س²/٢]₋₂⁴ = (٦٤+٢٤)−(٤+٦) = ٨٨−١٠ = ٧٨'},
+  {u:'u5',pts:5,ans:2,text:'الشكل المقترن بـ ∫(٢٥س⁴−٣س²)دس',opts:['٢٥س³−٣س+جـ','٥س⁵+س³+جـ','٥س⁵−س³+جـ','١٠٠س³−٦س+جـ'],hint:'∫(٢٥س⁴−٣س²)=٥س⁵−س³+جـ'},
+  // ===== الوحدة السادسة =====
+  {u:'u6',pts:5,ans:2,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['عدد النقاط المعطاة للمتنافسين','الرقم على قميص لاعب كرة القدم','أطوال الأولاد بعمر ١٢ عام','عدد مرات ظهور الكتابة ٥٠ مرة'],hint:'الأطوال متصلة لأنها تأخذ أي قيمة حقيقية ضمن نطاق'},
+  {u:'u6',pts:5,ans:2,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['عدد الكتب في المكتبة','الرقم المكتوب على لوحة سيارة','كتلة قطعة من الصابون','مجموع الأهداف المسجلة في بطولة'],hint:'الكتلة متصلة لأنها تأخذ أي قيمة حقيقية موجبة'},
+  {u:'u6',pts:5,ans:0,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['نسبة الرطوبة في الهواء صباحاً','الرقم على قميص لاعب سباق','عدد النوافذ في المدرسة','ألوان السيارات في مواقف المطار'],hint:'نسبة الرطوبة متغير متصل • قيم في [٠،١٠٠]'},
+  {u:'u6',pts:5,ans:2,text:'س ~ ط(١٦، ٤) • القيمة المعيارية (ز) للمتغير س = ١٨',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>','١','٣'],hint:'ز = (س−و)/ع = (١٨−١٦)/٢ = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
+  {u:'u6',pts:5,ans:3,text:'ز ~ ط(٠، ١) • قيمة ل(ز > ١)',opts:['٠٫٩٥٤٤','٠٫٨٤١٣','٠٫٦٨٢٦','٠٫١٥٨٧'],hint:'ل(ز>١)=١−٠٫٨٤١٣=٠٫١٥٨٧'},
+  {u:'u6',pts:5,ans:0,img:'img_q36',text:'انظر الشكل • العبارة الصحيحة',opts:['وسط(ل) > وسط(ق)','وسط(ل) = وسط(ق)','تباين(ل) < تباين(ق)','تباين(ل) = تباين(ق)'],hint:'ل على اليمين → وسط(ل) > وسط(ق)'},
+  {u:'u6',pts:7,ans:0,text:'ز ~ ط(١،٠) ل(ز≥ز₁)=٠٫٦٧٧٢ • قيمة ز₁',opts:['−٠٫٤٦','٠٫٧٤','−٠٫٩٥','−١٫٧٣'],hint:'ل(ز≤ز₁)=١−٠٫٦٧٧٢=٠٫٣٢٢٨ → ز₁=−٠٫٤٦'},
+  {u:'u6',pts:5,ans:2,text:'س ~ ط(٩، ع²)، ل(س > ٢٤) = ٠٫٠٢٢٨ • أوجد قيمة ع',opts:['٣٫٥','٥','٧٫٥','١٠'],hint:'ز=(٢٤−٩)/ع=٢ → ع=١٥/٢=٧٫٥'},
+  {u:'u6',pts:5,ans:3,text:'س ~ ط(٨٣، ٤٩) • القيمة المعيارية(ز) للمتغير س = ٧٢٫٥',opts:['−١٠٫٥','−١٠٫٠','١٠٫٥','−١٫٥'],hint:'ز=(٧٢٫٥−٨٣)/٧=−١٠٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٧</span></span>=−١٫٥'},
+  {u:'u6',pts:5,ans:1,text:'س ~ ط(٢٠، ع²)، ل(س < ٢٤)=٠٫٩٨٦٤ • قيمة ع لأقرب منزلة عشرية واحدة',opts:['١٫٦','١٫٨','٢٫٦','٣٫٣'],hint:'ز=(٢٤−٢٠)/ع → ع≈١٫٨'},
+  {u:'u6',pts:5,ans:0,text:'س ~ ط(١٢، ١٦)، ل(س ≥ ب) = ٠٫٨٦٤٣ • قيمة ب',opts:['٧٫٦','١٠٫٦','١٣٫١','١٦٫٤'],hint:'ع=٤، ز=(ب−١٢)/٤=−١٫١ → ب=١٢−٤٫٤=٧٫٦'},
+  {u:'u6',pts:7,ans:0,text:'تقدم ٣٠٠ شخص لوظيفة، نتائج القبول ط(٦٠، ٢٥) • عدد الحاصلين على أقل من ٦٢٫٢',opts:['٢٠١','١٦١','١٣٩','١٣٢'],hint:'ع=٥، ز=(٦٢٫٢−٦٠)/٥=٠٫٤٤ → ل(ز<٠٫٤٤)≈٠٫٦٧ → ٣٠٠×٠٫٦٧=٢٠١'},
+  {u:'u6',pts:5,ans:1,text:'ز ~ ط(١،٠)، ل(ز < أ) = ٠٫٠٤١٨ • قيمة أ',opts:['٠٫٩٠٨٢','−١٫٧٣','١٫٧٣','−٠٫٩٥'],hint:'ل(ز<أ)=٠٫٠٤١٨ < ٠٫٥ → أ سالب → أ = −١٫٧٣'},
+  {u:'u6',pts:5,ans:2,text:'س ~ ط(و، ١)، ل(س > ٥) = ٠٫٩٢٣٦ • قيمة و',opts:['٠٫٧١','٦٫٠٠','٦٫٤٣','٣٫٥٠'],hint:'ل(ز>(٥−و)/١)=٠٫٩٢٣٦ → (٥−و)=−١٫٤٣ → و≈٦٫٤٣'},
+  {u:'u6',pts:5,ans:2,text:'أطوال ٥٠٠ طالب ~ ط(١٦٥، ٢٥) • نسبة الطلاب الذين يزيد طولهم عن ١٧٠',opts:['٨٤٫١٣٪','٥٠٪','١٥٫٨٧٪','٣٤٫١٣٪'],hint:'ز=(١٧٠−١٦٥)/٥=١ → ل(ز>١)=١−٠٫٨٤١٣=٠٫١٥٨٧ = ١٥٫٨٧٪'}
+];
+
+let S = {name:'',gender:'',city:'',qi:0,chosen:new Array(QS.length).fill(null),surveyData:{},starVal:0,answers:[],score:0,correct:0,wrong:0};
+let allStudents = [];
+let prevPage = 'pg-reg';
+
+function show(id) {
+  ['pg-reg','pg-quiz','pg-survey','pg-result','pg-teacher'].forEach(p => {
+    const e = document.getElementById(p); if(e) e.classList.add('hidden');
+  });
+  document.getElementById(id).classList.remove('hidden');
+}
+
+function showPrev() { show(prevPage); }
+
+function startQuiz() {
+  const n = document.getElementById('i-name').value.trim();
+  const g = document.getElementById('i-gen').value;
+  const c = document.getElementById('i-city').value.trim();
+  if(!n||!g||!c){ alert('يرجى تعبئة جميع الحقول'); return; }
+  S = {name:n,gender:g,city:c,qi:0,chosen:new Array(QS.length).fill(null),surveyData:{},starVal:0,answers:[],score:0,correct:0,wrong:0};
+  show('pg-quiz'); buildUnitTabs(); renderQ();
+}
+
+function buildUnitTabs() {
+  const t = document.getElementById('unit-tabs'); t.innerHTML = '';
+  [{k:'u4',l:'الوحدة الرابعة'},{k:'u5',l:'الوحدة الخامسة'},{k:'u6',l:'الوحدة السادسة'}].forEach(u => {
+    const b = document.createElement('button');
+    b.style.cssText = `padding:4px 12px;border-radius:99px;font-size:12px;cursor:pointer;border:1px solid ${UC[u.k].tx};color:${UC[u.k].tx};background:#fff;font-family:Arial,sans-serif;font-weight:700;`;
+    b.textContent = u.l;
+    b.onclick = () => { const f = QS.findIndex(q=>q.u===u.k); if(f>=0) goQ(f); };
+    t.appendChild(b);
+  });
+}
+
+function renderNav() {
+  const nav = document.getElementById('qnav'); nav.innerHTML = '';
+  QS.forEach((q,i) => {
+    const b = document.createElement('button');
+    const uc = UC[q.u]; const isCur = i===S.qi; const isAns = S.chosen[i]!==null;
+    b.style.cssText = `width:28px;height:28px;border-radius:50%;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:Arial,sans-serif;font-weight:700;border:1px solid;`;
+    if(isCur) b.style.cssText += `background:${uc.tx};border-color:${uc.tx};color:#fff;`;
+    else if(isAns) b.style.cssText += `background:${uc.bg};border-color:${uc.tx};color:${uc.tx};`;
+    else b.style.cssText += `background:#fff;border-color:#ccc;color:#888;`;
+    b.textContent = i+1; b.onclick = () => goQ(i);
+    nav.appendChild(b);
+  });
+  const ans = S.chosen.filter(x=>x!==null).length;
+  document.getElementById('prog').style.width = (ans/QS.length*100)+'%';
+  document.getElementById('prog').style.background = UC[QS[S.qi].u].pf;
+  document.getElementById('acnt').textContent = `أجبت على ${ans} من ${QS.length}`;
+  const rem = QS.length-ans;
+  document.getElementById('finish-msg').innerHTML = rem===0 ? 'أجبت على جميع الأسئلة ✓' : `تبقّى <strong>${rem}</strong> سؤال بدون إجابة`;
+}
+
+function renderQ() {
+  const q = QS[S.qi]; const uc = UC[q.u];
+  document.getElementById('qlbl').textContent = `س${S.qi+1} من ${QS.length}`;
+  document.getElementById('ubadge').textContent = 'الوحدة '+uc.name;
+  document.getElementById('ubadge').style.cssText = `display:inline-block;padding:3px 12px;border-radius:99px;font-size:12px;margin-bottom:.7rem;font-weight:700;background:${uc.bg};color:${uc.tx};`;
+  document.getElementById('qpts').textContent = q.pts+' نقطة';
+  const imgDiv = document.getElementById('qimg');
+  if(q.img && IMAGES[q.img]){
+    imgDiv.innerHTML = '<img src="'+IMAGES[q.img]+'" style="max-width:200px;display:block;margin:0 auto .8rem;border-radius:8px;">';
+  } else {
+    imgDiv.innerHTML = '';
+  }
+  document.getElementById('qtext').innerHTML = toFrac(q.text);
+  const od = document.getElementById('qopts'); od.innerHTML = '';
+  q.opts.forEach((o,i) => {
+    const b = document.createElement('button'); b.className = 'opt';
+    if(S.chosen[S.qi]===i) b.style.cssText = `background:${uc.bg};border-color:${uc.tx};color:${uc.tx};font-weight:700;`;
+    b.innerHTML = toFrac(o);
+    b.onclick = () => {
+      S.chosen[S.qi] = i;
+      od.querySelectorAll('.opt').forEach(x => { x.style.cssText=''; });
+      b.style.cssText = `background:${uc.bg};border-color:${uc.tx};color:${uc.tx};font-weight:700;`;
+      renderNav();
+    };
+    od.appendChild(b);
+  });
+  document.getElementById('btn-prev').disabled = S.qi===0;
+  document.getElementById('btn-next').disabled = S.qi===QS.length-1;
+  renderNav();
+}
+
+function goQ(i) { if(i<0||i>=QS.length) return; S.qi=i; renderQ(); }
+
+function goSurvey() { prevPage='pg-survey'; show('pg-survey'); }
+
+function pick(id,btn) {
+  document.getElementById(id).querySelectorAll('.lb').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act'); S.surveyData[id] = btn.textContent;
+}
+
+function rateStar(v) {
+  S.starVal = v;
+  document.querySelectorAll('.star').forEach(s => s.classList.toggle('lit', parseInt(s.dataset.v)<=v));
+}
+
+function finishSurvey() {
+  S.score=0; S.correct=0; S.wrong=0; S.answers=[];
+  QS.forEach((q,i) => {
+    const ch=S.chosen[i]; const ok=ch===q.ans;
+    if(ok){ S.correct++; S.score+=q.pts; } else S.wrong++;
+    S.answers.push({text:q.text,ok,chosen:ch!==null?q.opts[ch]:'•',right:q.opts[q.ans],hint:q.hint,unit:q.u,pts:ok?q.pts:0});
+  });
+  allStudents.push(JSON.parse(JSON.stringify(S)));
+  buildResult(); prevPage='pg-result'; show('pg-result');
+}
+
+function buildResult() {
+  const total = QS.reduce((s,q)=>s+q.pts,0);
+  const pct = Math.round(S.score/total*100);
+  document.getElementById('r-pct').textContent = pct;
+  document.getElementById('r-name').textContent = `${S.name} • ${S.gender} • ${S.city}`;
+  document.getElementById('r-msg').textContent = [[90,'ممتاز جداً 🌟'],[75,'جيد جداً 💪'],[60,'جيد، راجع الضعيف 📚'],[0,'تحتاج مراجعة أكثر 💡']].find(m=>pct>=m[0])[1];
+  document.getElementById('r-cor').textContent = S.correct;
+  document.getElementById('r-wr').textContent = S.wrong;
+  document.getElementById('r-sc').textContent = S.score+'/'+total;
+
+  const ud = document.getElementById('unit-scores'); ud.innerHTML='';
+  ['u4','u5','u6'].forEach(uk => {
+    const uqs=QS.filter(q=>q.u===uk); const utot=uqs.reduce((s,q)=>s+q.pts,0);
+    const usc=S.answers.filter(a=>a.unit===uk&&a.ok).reduce((s,a)=>s+a.pts,0);
+    const up=Math.round(usc/utot*100); const uc=UC[uk];
+    const row=document.createElement('div'); row.className='urow';
+    row.innerHTML=`<span style="font-weight:700;">الوحدة ${uc.name}</span><div style="flex:1;margin:0 12px;background:#eee;height:6px;border-radius:99px;overflow:hidden;"><div style="height:100%;width:${up}%;background:${uc.pf};border-radius:99px;"></div></div><span style="color:${uc.tx};font-weight:700;font-size:13px;">${usc}/${utot} (${up}%)</span>`;
+    ud.appendChild(row);
+  });
+
+  const list = document.getElementById('r-list'); list.innerHTML='';
+  S.answers.forEach((a,i) => {
+    const uc=UC[a.unit]; const d=document.createElement('div'); d.className='rev '+(a.ok?'c':'w');
+    d.innerHTML=`<div style="display:flex;justify-content:space-between;gap:6px;"><span><strong style="color:${a.ok?'#3B6D11':'#A32D2D'}">${a.ok?'✓':'✗'}</strong> س${i+1}: ${a.text.length>55?a.text.substring(0,55)+'...':a.text}</span><span style="font-size:11px;padding:1px 8px;border-radius:99px;background:${uc.bg};color:${uc.tx};white-space:nowrap;font-weight:700;">${a.pts} نقطة</span></div><div style="font-size:11px;color:#666;margin-top:4px;">إجابتك: <strong>${a.chosen}</strong>${!a.ok?' | الصحيحة: <strong style="color:#3B6D11">'+a.right+'</strong>':''}</div><div style="font-size:11px;color:#888;margin-top:2px;font-style:italic;">${a.hint}</div>`;
+    list.appendChild(d);
+  });
+}
+
+function openPw() {
+  document.getElementById('pw-overlay').classList.remove('hidden');
+  document.getElementById('pw-input').value='';
+  document.getElementById('pw-err').style.display='none';
+  setTimeout(()=>document.getElementById('pw-input').focus(),100);
+}
+function closePw() { document.getElementById('pw-overlay').classList.add('hidden'); }
+function checkPw() {
+  const val = document.getElementById('pw-input').value;
+  if(val.trim()===TEACHER_PW.trim()) {
+    closePw();
+    const cur=['pg-reg','pg-quiz','pg-survey','pg-result'].find(p=>!document.getElementById(p).classList.contains('hidden'));
+    if(cur) prevPage=cur;
+    buildTeacher(); show('pg-teacher');
+  } else {
+    document.getElementById('pw-err').style.display='block';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+function buildTeacher() {
+  const total = QS.reduce((s,q)=>s+q.pts,0);
+  document.getElementById('t-total').textContent = allStudents.length;
+  if(!allStudents.length){ document.getElementById('t-avg').textContent='•'; document.getElementById('t-pass').textContent='•'; return; }
+  const avg = Math.round(allStudents.reduce((s,st)=>s+Math.round(st.score/total*100),0)/allStudents.length);
+  const pass = allStudents.filter(st=>Math.round(st.score/total*100)>=60).length;
+  document.getElementById('t-avg').textContent = avg+'%';
+  document.getElementById('t-pass').textContent = pass;
+  const tbody = document.getElementById('t-body'); tbody.innerHTML='';
+  allStudents.forEach(st => {
+    const pct = Math.round(st.score/total*100);
+    const usc = (['u4','u5','u6']).map(uk => {
+      const ut=QS.filter(q=>q.u===uk).reduce((s,q)=>s+q.pts,0);
+      const us=st.answers.filter(a=>a.unit===uk&&a.ok).reduce((s,a)=>s+a.pts,0);
+      return `${us}/${ut}`;
+    });
+    const tr = document.createElement('tr');
+    tr.innerHTML=`<td class="tcell">${st.name}</td><td class="tcell">${st.gender}</td><td class="tcell">${st.city}</td><td class="tcell"><span class="badge ${pct>=60?'ok':'bad'}">${pct}%</span></td><td class="tcell" style="color:#185FA5;font-weight:700;">${usc[0]}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${usc[1]}</td><td class="tcell" style="color:#BA7517;font-weight:700;">${usc[2]}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${st.correct}</td><td class="tcell" style="color:#A32D2D;font-weight:700;">${st.wrong}</td><td class="tcell">${st.surveyData['s1']||'•'}</td><td class="tcell">${st.surveyData['s2']||'•'}</td><td class="tcell">${st.starVal?'★'.repeat(st.starVal):'•'}</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function restart() {
+  document.getElementById('i-name').value='';
+  document.getElementById('i-gen').value='';
+  document.getElementById('i-city').value='';
+  document.querySelectorAll('.lb').forEach(b=>b.classList.remove('act'));
+  document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));
+  prevPage='pg-reg'; show('pg-reg');
+}
+</script>
+</body>
+</html>
