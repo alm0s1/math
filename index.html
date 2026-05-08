@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مراجعة شاملة لطلاب الثاني عشر في مادة رياضيات الأساسية</title>
+<title>اختبار الوحدات الرابعة والخامسة والسادسة</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;}
   body{font-family:Arial,sans-serif;direction:rtl;background:#f4f6f9;color:#1a1a1a;min-height:100vh;}
@@ -78,10 +78,8 @@
 
   <!-- تسجيل الطالب -->
   <div id="pg-reg" class="card">
-    <h1>مراجعة شاملة لطلاب الثاني عشر في مادة رياضيات الأساسية</h1>
-    <p class="sub">توزيع ذي الحدين والتوزيعات الهندسية • التكامل • التوزيع الطبيعي</p>
-    <p class="sub" style="margin-top:0.5rem;font-size:0.95em;">إعداد: أ. فاطمة حمد الحجري</p>
-    <p class="sub" style="margin-top:0.2rem;font-size:0.9em;opacity:0.85;">مشرفة رياضيات • محافظة شمال الشرقية</p>
+    <h1>اختبار الوحدات الرابعة والخامسة والسادسة</h1>
+    <p class="sub">التوزيعات الهندسية والثنائية • التكامل • التوزيع الطبيعي — ١٥ سؤال لكل وحدة</p>
     <div class="notice">يمكنك التنقل بين الأسئلة وتغيير إجاباتك بحرية — النتائج تظهر فقط بعد إنهاء الاستبيان</div>
     <label>الاسم الكامل</label>
     <input type="text" id="i-name" placeholder="أدخل اسمك...">
@@ -97,12 +95,12 @@
       <option value="مسقط">مسقط</option>
       <option value="مسندم">مسندم</option>
       <option value="البريمي">البريمي</option>
-      <option value="شمال الباطنة">شمال الباطنة</option>
-      <option value="جنوب الباطنة">جنوب الباطنة</option>
+      <option value="الباطنة شمال">الباطنة شمال</option>
+      <option value="الباطنة جنوب">الباطنة جنوب</option>
       <option value="الظاهرة">الظاهرة</option>
       <option value="الداخلية">الداخلية</option>
-      <option value="شمال الشرقية">شمال الشرقية</option>
-      <option value="جنوب الشرقية">جنوب الشرقية</option>
+      <option value="الشرقية شمال">الشرقية شمال</option>
+      <option value="الشرقية جنوب">الشرقية جنوب</option>
       <option value="الوسطى">الوسطى</option>
       <option value="ظفار">ظفار</option>
     </select>
@@ -296,16 +294,16 @@ function toFrac(s) {
     let lower = sub.split('').map(c => subMap[c]||c).join('');
     let upper = sup.split('').map(c => supMap[c]||c).join('');
     if(!lower && !upper) return '∫';
-    return '<span style="position:relative;display:inline-flex;align-items:center;vertical-align:middle;margin:0 2px 0 14px;">'
-      +'<span style="font-size:0.7em;position:absolute;top:-0.7em;left:-14px;white-space:nowrap;">'+upper+'</span>'
-      +'<span style="font-size:0.7em;position:absolute;bottom:-0.4em;left:-14px;white-space:nowrap;">'+lower+'</span>'
+    return '<span style="position:relative;display:inline-flex;align-items:center;vertical-align:middle;margin:0 10px 0 10px;">'
+      +'<span style="font-size:0.7em;position:absolute;top:-0.7em;left:-10px;white-space:nowrap;">'+upper+'</span>'
       +'<span style="font-size:1.6em;line-height:1;display:inline-block;transform:scaleX(-1);">∫</span>'
+      +'<span style="font-size:0.7em;position:absolute;bottom:-0.4em;right:-10px;white-space:nowrap;">'+lower+'</span>'
       +'</span>';
   });
 
-  // كسور من نوع: أي شيء / أي شيء (مع استثناء الأقواس والأرقام العشرية)
-  s = s.replace(/([^\s\/<>،•∫()٠-٩\d][^\s\/<>،•∫()]*)\/([^\s\/<>،•∫()]+)/g, function(m, n, d) {
-    return '<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">'+n+'</span><span style="padding:0 4px;text-align:center;">'+d+'</span></span>';
+  // كسور من نوع: أي شيء / أي شيء
+  s = s.replace(/([^\s\/<>،•∫]+)\/([^\s\/<>،•∫]+)/g, function(m, n, d) {
+    return '<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">'+n+'</span><span style="padding:0 4px;text-align:center;">'+d+'</span></span>';
   });
   return s;
 }
@@ -321,51 +319,52 @@ const UC = {
 const QS = [
   // ===== الوحدة الرابعة =====
   {u:'u4',pts:5,ans:0,text:'س ~ ث(٣، ٠٫٦) • القيمة المتوقعة ت(س) تساوي',opts:['١٫٨','١٫٢','٠٫٦','٠٫٤'],hint:'ت(س) = ن×ب = ٣×٠٫٦ = ١٫٨'},
-  {u:'u4',pts:5,ans:0,text:'س ~ هندسي(٠٫٨) • الشكل المقترن بـ ل(س > ٤)',opts:['(١-٠٫٨)⁴','(١-٠٫٢)⁴','١-(٠٫٨)⁴','١-(٠٫٢)⁴'],hint:'ل(س>٤)=(١-ب)⁴=(١-٠٫٨)⁴'},
-  {u:'u4',pts:5,ans:2,img:'img_q3',text:'القرص في الشكل مقسّم إلى ثلاثة أجزاء متساوية (أ، ب، ج). إذا دُوِّر القرص مرة واحدة • ما احتمال وقوف المؤشر على (أ)؟',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>'],hint:'٣ أجزاء متساوية → ل(أ) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>'},
-  {u:'u4',pts:5,ans:3,text:'ص ~ هندسي(٠٫٢٣٧) • القيمة المتوقعة لأقرب ثلاث منازل',opts:['٠٫٤٧٤','٠٫٧٦٣','١٫٣١١','٤٫٢١٩'],hint:'ت(ص) = ١/ب = ١/٠٫٢٣٧ ≈ ٤٫٢١٩'},
+  {u:'u4',pts:5,ans:2,text:'س ~ هندسي(٠٫٨) • الشكل المقترن بـ ل(س > ٤)',opts:['(٠٫٨-١)⁴','(٠٫٢-١)⁴','١-(٠٫٨)⁴','١-(٠٫٢)⁴'],hint:'ل(س>٤)=(١-ب)⁴=(٠٫٢)⁴ والصيغة: ١-(٠٫٨)⁴'},
+  {u:'u4',pts:5,ans:2,img:'img_q3',text:'القرص في الشكل مقسّم إلى ثلاثة أجزاء متساوية (أ، ب، ج). إذا دُوِّر القرص مرة واحدة • ما احتمال وقوف المؤشر على (أ)؟',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>'],hint:'٣ أجزاء متساوية → ل(أ) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>'},
+  {u:'u4',pts:5,ans:2,text:'ص ~ هندسي(٠٫٢٣٧) • القيمة المتوقعة لأقرب ثلاث منازل',opts:['٠٫٤٧٤','٠٫٧٦٣','١٫٣١١','٤٫٢١٩'],hint:'ت(ص) = ١/(١-ب) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٠</span></span>٫٧٦٣ ≈ ١٫٣١١'},
   {u:'u4',pts:5,ans:2,text:'س ~ هندسي(٠٫٨٥) • قيمة المنوال',opts:['٠٫١٥','٠٫٨٥','١','٢'],hint:'منوال التوزيع الهندسي = ١ دائماً'},
-  {u:'u4',pts:5,ans:3,img:'img_q6',text:'القرص في الشكل سداسي منتظم • إذا دُوِّر القرص مرة واحدة • احتمال وقوف المؤشر على رمز النجمة',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٦</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'],hint:'القرص سداسي = ٦ قطاعات → ٣ نجوم من ٦ → ل(نجمة) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
+  {u:'u4',pts:5,ans:1,img:'img_q6',text:'القرص في الشكل سداسي منتظم • إذا دُوِّر القرص مرة واحدة • احتمال وقوف المؤشر على رمز النجمة',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٩</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٦</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'],hint:'القرص سداسي = ٦ قطاعات → ٣ نجوم من ٦ → ل(نجمة) = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
   {u:'u4',pts:7,ans:0,text:'س ~ ث(٣، ٠٫٣٦) • قيمة ل(س ≠ ٢) لأقرب ثلاث منازل',opts:['٠٫٧٥١','٠٫٠٥٧','٠٫٠٣٩','٠٫٩٦١'],hint:'ل(س=٢)=C(٣,٢)×(٠٫٣٦)²×(٠٫٦٤)≈٠٫٢٤٩ → ل(س≠٢)=٠٫٧٥١'},
-  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ع²(س)=١٤٫٤، ت(س)=٢٤ • قيمة ن',opts:['٣٠','٤٥','٦٠','٧٥'],hint:'ت=ن×ب=٢٤، ع²=ن×ب×(١-ب)=١٤٫٤ → (١-ب)=١٤٫٤/٢٤=٠٫٦ → ب=٠٫٤ → ن=٢٤/٠٫٤=٦٠'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ع²(س)=١٦، ت(س)=٤٠ • قيمة ن',opts:['٢٠','٥٠','١٠٠','٢٠٠'],hint:'ت=ن×ب=٤٠، ع²=ن×ب×(١-ب)=١٦ → ب=٠٫٤ → ن=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٤٠</span><span style="padding:0 3px">٠</span></span>٫٤=١٠٠'},
   {u:'u4',pts:5,ans:2,text:'س ~ ث(١٠، ٠٫٢) • قيمة التوقع ت(س)',opts:['١','١٫٦','٢','١٫٧'],hint:'ت(س) = ن×ب = ١٠×٠٫٢ = ٢'},
-  {u:'u4',pts:7,ans:1,text:'س ~ ث(٥، ٠٫٤) • قيمة ل(س = ٣) لأقرب ثلاث منازل',opts:['٠٫١٢٣','٠٫٢٣٠','٠٫٣٤٦','٠٫٤٥٦'],hint:'ل(س=٣)=C(٥,٣)×(٠٫٤)³×(٠٫٦)²=١٠×٠٫٠٦٤×٠٫٣٦≈٠٫٢٣٠'},
+  {u:'u4',pts:7,ans:1,text:'المتغير العشوائي س ~ ث(٣، ٠٫٣٦) • تحقق من قيمة ل(س ≠ ٢)',opts:['٠٫٧٩١','٠٫٧٥١','٠٫٦٩١','٠٫٨٥١'],hint:'ل(س≠٢) = ١ − ل(س=٢) = ١−٠٫٢٤٩ = ٠٫٧٥١'},
   {u:'u4',pts:5,ans:0,text:'س ~ ث(٦، ٠٫٢) • احتمال ل(٢) لأقرب ثلاث منازل',opts:['٠٫٢٤٦','٠٫٣٩٣','٠٫٠١٦','٠٫٠١٥'],hint:'ل(س=٢)=C(٦,٢)×(٠٫٢)²×(٠٫٨)⁴=١٥×٠٫٠٤×٠٫٤٠٩٦≈٠٫٢٤٦'},
   {u:'u4',pts:5,ans:2,text:'س ~ ث(ن، ٠٫٤)، ت(س) = ٣٫٦ • قيمة ن',opts:['١','٤','٩','٦'],hint:'ت(س)=ن×ب → ٣٫٦=ن×٠٫٤ → ن=٩'},
-  {u:'u4',pts:5,ans:1,text:'س ~ ث(ن،٠٫٣)، ل(٠)=٠٫١٦٨٠٧ • قيمة ن',opts:['٣','٥','٧','٩'],hint:'ل(س=٠)=(١-ب)ⁿ=(٠٫٧)ⁿ=٠٫١٦٨٠٧ → (٠٫٧)⁵=٠٫١٦٨٠٧ → ن=٥'},
-  {u:'u4',pts:7,ans:3,text:'س ~ هندسي(٠٫٣٦) • قيمة ل(٦) لأقرب ثلاث منازل',opts:['٠٫٠٢٥','٠٫٠٥٧','٠٫٩٦١','٠٫٠٣٩'],hint:'ل(س=٦)=(٠٫٦٤)⁵×٠٫٣٦≈٠٫٠٣٩'},
-  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ت(س)=٤٫٥، ع²(س)=٣٫١٥ • قيمة ن',opts:['١','٦','١٥','٩'],hint:'ب=١−ع²/ت=٠٫٣ → ن=ت/ب=٤٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٠</span></span>٫٣=١٥'},
+  {u:'u4',pts:5,ans:3,text:'س ~ ث(ن،٠٫٧)، ل(٠)=٠٫١٦٨٠٧ • احتمال الفشل',opts:['٠٫١','٠٫٢','٠٫٤','٠٫٣'],hint:'ل(س=٠)=(١-ب)ⁿ=(٠٫٣)ⁿ → احتمال الفشل=١-ب=٠٫٣'},
+  {u:'u4',pts:7,ans:0,text:'س ~ هندسي(٠٫٣٦) • قيمة ل(٦) لأقرب ثلاث منازل',opts:['٠٫٠٢٥','٠٫٠٥٧','٠٫٩٦١','٠٫٠٣٩'],hint:'ل(س=٦)=(٠٫٦٤)⁵×٠٫٣٦≈٠٫٠٢٥'},
+  {u:'u4',pts:5,ans:2,text:'س ~ ث(ن،ب)، ت(س)=٤٫٥، ع²(س)=٣٫١٥ • قيمة ن',opts:['١','٦','١٥','٩'],hint:'ب=١−ع²/ت=٠٫٣ → ن=ت/ب=٤٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٠</span></span>٫٣=١٥'},
   // ===== الوحدة الخامسة =====
   {u:'u5',pts:5,ans:1,text:'دص/دس = ٢ • الشكل المقترن بـ ص بدلالة س',opts:['ص=س+جـ','ص=٢س+جـ','ص=س²+جـ','ص=٢س²+جـ'],hint:'∫٢دس = ٢س + جـ'},
-  {u:'u5',pts:5,ans:0,text:'دص/دس = س⁷ • الشكل المقترن بـ ص بدلالة س',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٨</span></span>س⁸+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٧</span></span>س⁸+جـ','٨س⁶+جـ','٦س⁷+جـ'],hint:'∫سⁿ = سⁿ⁺¹/(ن+١)+جـ → ∫س⁷ = س⁸/٨+جـ'},
-  {u:'u5',pts:7,ans:1,text:'د´(س) = س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">١</span><span style="padding:0 1px;">٣</span></span></span>، د(١) = ١ • قيمة ثابت التكامل جـ',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٢</span><span style="padding:0 4px;text-align:center;">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٤</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٣</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٢</span><span style="padding:0 4px;text-align:center;">٣</span></span>'],hint:'∫س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">١</span><span style="padding:0 1px;">٣</span></span></span>=(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٣</span><span style="padding:0 4px;text-align:center;">٤</span></span>)س<span style="display:inline-block;vertical-align:top;font-size:0.6em;line-height:1;position:relative;top:-0.8em;"><span style="display:inline-flex;flex-direction:column;align-items:center;"><span style="border-bottom:1px solid currentColor;padding:0 1px;">٤</span><span style="padding:0 1px;">٣</span></span></span>+جـ. عند س=١: ١=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٣</span><span style="padding:0 4px;text-align:center;">٤</span></span>+جـ → جـ=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">١</span><span style="padding:0 4px;text-align:center;">٤</span></span>'},  {u:'u5',pts:5,ans:0,text:'قيمة ∫₋₁¹ ٢س  دس',opts:['صفر','١','٢','٤'],hint:'٢س دالة فردية → التكامل من -ن إلى ن = صفر'},
-  {u:'u5',pts:5,ans:2,text:'قيمة ∫₂⁴ ٢س  دس',opts:['٤','٨','١٢','١٦'],hint:'[س²]₂⁴ = ١٦ − ٤ = ١٢'},
-  {u:'u5',pts:5,ans:1,text:'د(٤)=٠، د(٢)=−٣ • قيمة ∫₂⁴ د´(س)  دس',opts:['−٨','٣','٨','−٣'],hint:'∫₂⁴ د´(س)دس = د(٤)−د(٢) = ٠−(−٣) = ٣'},
-  {u:'u5',pts:5,ans:3,text:'قيمة ∫₁⁴ <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.85em;line-height:1.2;margin:0 3px;direction:ltr;"><span style="border-bottom:1.5px solid currentColor;padding:0 4px;text-align:center;">٨</span><span style="padding:0 4px;text-align:center;">س²</span></span>  دس',opts:['١٢','−١٢','−٦','٦'],hint:'[−٨/س]₁⁴ = −٢−(−٨) = ٦'},
-  {u:'u5',pts:7,ans:3,text:'د´(س)=٤س³−٨س+٢، د(−١)=١٠ • الشكل المقترن بـ د(س)',opts:['د(س)=س⁴−٤س²+٢س+١','د(س)=س⁴−٤س²+٢س+١١','د(س)=س⁴−٤س²+٢س+١٧','د(س)=س⁴−٤س²+٢س+١٥'],hint:'∫(٤س³−٨س+٢)=س⁴−٤س²+٢س+جـ. عند س=−١: ١−٤−٢+جـ=١٠ → جـ=١٥'},
-  {u:'u5',pts:5,ans:0,text:'قيمة ∫₁³ (٨س+٣)  دس',opts:['٣٨','٤٥','١٦','٣٠'],hint:'[٤س²+٣س]₁³=(٣٦+٩)−(٤+٣)=٤٥−٧=٣٨'},
-  {u:'u5',pts:5,ans:2,text:'دص/دس = س² • الشكل المقترن بـ ص بدلالة س',opts:['ص=٢س+جـ','ص=س²+جـ','ص=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>س³+جـ','ص=س³+جـ'],hint:'∫س²دس = س³/٣ + جـ'},
-  {u:'u5',pts:5,ans:1,text:'دص/دس = ٦س⁻⁷ • الشكل المقترن بـ ص بدلالة س',opts:['−٢س⁻⁶+جـ','−س⁻⁶+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٦</span><span style="padding:0 3px">٨</span></span>س⁻⁸+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٤</span></span>س⁻⁶+جـ'],hint:'∫٦س⁻⁷دس = −س⁻⁶+جـ'},
-  {u:'u5',pts:5,ans:2,text:'ص = (<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">س⁴</span></span> − <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">س³</span></span>) • التكامل غير المحدود',opts:['−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢</span></span>س⁻³+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣س³</span></span>+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢س²</span></span>+جـ'],hint:'∫(٢س⁻⁴−٩س⁻³)=−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٢</span></span>س⁻³+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ'},
-  {u:'u5',pts:7,ans:1,text:'د(٢)=٥، د(٤)=٠ • قيمة ∫₂⁴ د´(س)دس',opts:['٥','−٥','٠','١٠'],hint:'∫₂⁴ د´(س)دس = د(٤)−د(٢) = ٠−٥ = −٥'},
-  {u:'u5',pts:5,ans:3,text:'قيمة ∫₋₂⁴ (س³+٣س)دس',opts:['٣٠','−٧٨','١٠','٧٨'],hint:'[س⁴/٤+٣س²/٢]₋₂⁴ = (٦٤+٢٤)−(٤+٦) = ٨٨−١٠ = ٧٨'},
+  {u:'u5',pts:5,ans:0,text:'دص/دس = س⁷ • الشكل المقترن بـ ص بدلالة س',opts:['(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٨</span></span>)س⁸+جـ','(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٧</span></span>)س⁸+جـ','٨س⁶+جـ','٦س⁷+جـ'],hint:'∫سⁿ = سⁿ⁺¹/(ن+١)+جـ → ∫س⁷ = س⁸/٨+جـ'},
+  {u:'u5',pts:7,ans:1,text:'د´(س) = س^(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>)، د(١) = ١ • قيمة ثابت التكامل جـ',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٤</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>'],hint:'∫س^(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>)=(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٤</span></span>)س^(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٤</span><span style="padding:0 3px">٣</span></span>)+جـ. عند س=١: ١=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٤</span></span>+جـ → جـ=<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٤</span></span>'},
+  {u:'u5',pts:5,ans:0,text:'قيمة ∫₋₁¹ ٢س دس',opts:['صفر','١','٢','٤'],hint:'٢س دالة فردية → التكامل من -ن إلى ن = صفر'},
+  {u:'u5',pts:5,ans:2,text:'قيمة ∫₂⁴ ٢س دس',opts:['٤','٨','١٢','١٦'],hint:'[س²]₂⁴ = ١٦ − ٤ = ١٢'},
+  {u:'u5',pts:5,ans:1,text:'د(٤)=٠، د(٢)=−٣ • قيمة ∫₂⁴ د´(س)دس',opts:['−٨','٣','٨','−٣'],hint:'∫₂⁴ د´(س)دس = د(٤)−د(٢) = ٠−(−٣) = ٣'},
+  {u:'u5',pts:5,ans:3,text:'قيمة ∫₁⁴ (٨/س²)دس',opts:['١٢','−١٢','−٦','٦'],hint:'[−٨/س]₁⁴ = −٢−(−٨) = ٦'},
+  {u:'u5',pts:7,ans:2,text:'د´(س)=٤س³−٨س+٢، د(−١)=١٠ • الشكل المقترن بـ د(س)',opts:['د(س)=س⁴−٤س²+٢س+١','د(س)=س⁴−٤س²+٢س+١٧','د(س)=س⁴−٤س²+٢س+١١','د(س)=٤س⁴−٨س²+٢س+١١'],hint:'∫(٤س³−٨س+٢)=س⁴−٤س²+٢س+جـ. عند س=−١: جـ=١١'},
+  {u:'u5',pts:5,ans:0,text:'قيمة ∫₁³ (٨س+٣)دس',opts:['٣٨','٤٥','١٦','٣٠'],hint:'[٤س²+٣س]₁³=(٣٦+٩)−(٤+٣)=٤٥−٧=٣٨'},
+  {u:'u5',pts:5,ans:2,text:'دص/دس = س² • الشكل المقترن بـ ص بدلالة س',opts:['ص=٢س+جـ','ص=س²+جـ','ص=(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>)س³+جـ','ص=س³+جـ'],hint:'∫س²دس = س³/٣ + جـ'},
+  {u:'u5',pts:5,ans:1,text:'دص/دس = ٦س⁻⁷ • الشكل المقترن بـ ص بدلالة س',opts:['−٢س⁻⁶+جـ','−س⁻⁶+جـ','(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٦</span><span style="padding:0 3px">٨</span></span>)س⁻⁸+جـ','−(<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٣</span><span style="padding:0 3px">٤</span></span>)س⁻⁶+جـ'],hint:'∫٦س⁻⁷دس = −س⁻⁶+جـ'},
+  {u:'u5',pts:5,ans:3,text:'ص = (٢/س⁴ − ٩/س³) • التكامل غير المحدود',opts:['−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س²+جـ','−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س⁻³−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ','−٢/(٣س³)+٣/(٢س²)+جـ'],hint:'∫(٢س⁻⁴−٩س⁻³)=−<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٢</span><span style="padding:0 3px">٣</span></span>س⁻³+<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٩</span><span style="padding:0 3px">٢</span></span>س⁻²+جـ'},
+  {u:'u5',pts:7,ans:0,text:'د(٢)=٥، د(٤)=٠ • قيمة ∫₄² د´(س)دس',opts:['٥','−٥','٠','١٠'],hint:'∫₄² = −∫₂⁴ = −(د(٤)−د(٢)) = −(٠−٥) = ٥'},
+  {u:'u5',pts:5,ans:3,text:'قيمة ∫₋٤⁴ (س³+٣س)دس',opts:['٤','−٤','٨','صفر'],hint:'س³+٣س دالة فردية → التكامل على [-٤,٤] = صفر'},
   {u:'u5',pts:5,ans:2,text:'الشكل المقترن بـ ∫(٢٥س⁴−٣س²)دس',opts:['٢٥س³−٣س+جـ','٥س⁵+س³+جـ','٥س⁵−س³+جـ','١٠٠س³−٦س+جـ'],hint:'∫(٢٥س⁴−٣س²)=٥س⁵−س³+جـ'},
   // ===== الوحدة السادسة =====
   {u:'u6',pts:5,ans:2,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['عدد النقاط المعطاة للمتنافسين','الرقم على قميص لاعب كرة القدم','أطوال الأولاد بعمر ١٢ عام','عدد مرات ظهور الكتابة ٥٠ مرة'],hint:'الأطوال متصلة لأنها تأخذ أي قيمة حقيقية ضمن نطاق'},
-  {u:'u6',pts:5,ans:2,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['عدد الكتب في المكتبة','الرقم المكتوب على لوحة سيارة','كتلة قطعة من الصابون','مجموع الأهداف المسجلة في بطولة'],hint:'الكتلة متصلة لأنها تأخذ أي قيمة حقيقية موجبة'},
-  {u:'u6',pts:5,ans:0,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً',opts:['نسبة الرطوبة في الهواء صباحاً','الرقم على قميص لاعب سباق','عدد النوافذ في المدرسة','ألوان السيارات في مواقف المطار'],hint:'نسبة الرطوبة متغير متصل • قيم في [٠،١٠٠]'},
-  {u:'u6',pts:5,ans:2,text:'س ~ ط(١٦، ٤) • القيمة المعيارية (ز) للمتغير س = ١٨',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>','١','٣'],hint:'ز = (س−و)/ع = (١٨−١٦)/٢ = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
+  {u:'u6',pts:5,ans:2,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً (٢)',opts:['عدد الكتب في المكتبة','الرقم المكتوب على لوحة سيارة','كتلة قطعة من الصابون','مجموع الأهداف المسجلة في بطولة'],hint:'الكتلة متصلة لأنها تأخذ أي قيمة حقيقية موجبة'},
+  {u:'u6',pts:5,ans:0,text:'ظلل العبارة التي تصف متغيراً عشوائياً متصلاً (٣)',opts:['نسبة الرطوبة في الهواء صباحاً','الرقم على قميص لاعب سباق','عدد النوافذ في المدرسة','ألوان السيارات في مواقف المطار'],hint:'نسبة الرطوبة متغير متصل • قيم في [٠،١٠٠]'},
+  {u:'u6',pts:5,ans:1,text:'س ~ ط(١٦، ٤) • القيمة المعيارية (ز) للمتغير س = ١٨',opts:['<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٣</span></span>','<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>','١','٣'],hint:'ز = (س−و)/ع = (١٨−١٦)/٤ = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">١</span><span style="padding:0 3px">٢</span></span>'},
   {u:'u6',pts:5,ans:3,text:'ز ~ ط(٠، ١) • قيمة ل(ز > ١)',opts:['٠٫٩٥٤٤','٠٫٨٤١٣','٠٫٦٨٢٦','٠٫١٥٨٧'],hint:'ل(ز>١)=١−٠٫٨٤١٣=٠٫١٥٨٧'},
-  {u:'u6',pts:5,ans:0,img:'img_q36',text:'انظر الشكل • العبارة الصحيحة',opts:['وسط(ل) > وسط(ق)','وسط(ل) = وسط(ق)','تباين(ل) < تباين(ق)','تباين(ل) = تباين(ق)'],hint:'ل على اليمين → وسط(ل) > وسط(ق)'},
+  {u:'u6',pts:5,ans:2,img:'img_q36',text:'انظر الشكل • العبارة الصحيحة',opts:['وسط(ل) > وسط(ق)','وسط(ل) = وسط(ق)','تباين(ل) < تباين(ق)','تباين(ل) = تباين(ق)'],hint:'ق أضيق من ل → تباين(ل) < تباين(ق)'},
   {u:'u6',pts:7,ans:0,text:'ز ~ ط(١،٠) ل(ز≥ز₁)=٠٫٦٧٧٢ • قيمة ز₁',opts:['−٠٫٤٦','٠٫٧٤','−٠٫٩٥','−١٫٧٣'],hint:'ل(ز≤ز₁)=١−٠٫٦٧٧٢=٠٫٣٢٢٨ → ز₁=−٠٫٤٦'},
-  {u:'u6',pts:5,ans:2,text:'س ~ ط(٩، ع²)، ل(س > ٢٤) = ٠٫٠٢٢٨ • أوجد التباين ع²',opts:['١٢٫٢٥','٢٥','٥٦٫٢٥','١٠٠'],hint:'ز=(٢٤−٩)/ع=٢ → ع=٧٫٥ → ع²=٥٦٫٢٥'},
-  {u:'u6',pts:5,ans:3,text:'س ~ ط(٨٣، ٤٩) • القيمة المعيارية(ز) للمتغير س = ٧٢٫٥',opts:['−١٠٫٥','−١٠٫٠','١٠٫٥','−١٫٥'],hint:'ز=(٧٢٫٥−٨٣)/٧=−١٠٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px;direction:ltr"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٧</span></span>=−١٫٥'},
-  {u:'u6',pts:5,ans:1,text:'س ~ ط(٢٠، ع²)، ل(س < ٢٤)=٠٫٩٨٦٤ • أوجد الانحراف المعياري ع لأقرب منزلة عشرية واحدة',opts:['١٫٦','١٫٨','٢٫٦','٣٫٣'],hint:'ز=(٢٤−٢٠)/ع=٢٫٢ → ع=٤/٢٫٢≈١٫٨'},
-  {u:'u6',pts:5,ans:0,text:'س ~ ط(١٢، ١٦)، ل(س ≥ ب) = ٠٫٨٦٤٣ • قيمة ب',opts:['٧٫٦','١٠٫٦','١٣٫١','١٦٫٤'],hint:'ع=٤، ز=(ب−١٢)/٤=−١٫١ → ب=١٢−٤٫٤=٧٫٦'},
-  {u:'u6',pts:7,ans:0,text:'تقدم ٣٠٠ شخص لوظيفة، نتائج القبول ط(٦٠، ٢٥) • عدد الحاصلين على أقل من ٦٢٫٢',opts:['٢٠١','١٦١','١٣٩','١٣٢'],hint:'ع=٥، ز=(٦٢٫٢−٦٠)/٥=٠٫٤٤ → ل(ز<٠٫٤٤)≈٠٫٦٧ → ٣٠٠×٠٫٦٧=٢٠١'},
+  {u:'u6',pts:5,ans:2,text:'س ~ ط(٩، ع²) • ل(س > ٢٤) لأقرب منزلتين',opts:['٠٫٠٢٠٢','٠٫٩٧٧٢','٠٫٠٢٢٨','٠٫٩٧٩٨'],hint:'ز=(٢٤−٩)/٤=٣٫٧٥ → ل(ز>٣٫٧٥)≈٠٫٠٢٢٨'},
+  {u:'u6',pts:5,ans:3,text:'س ~ ط(٨٣، ٤٩) • القيمة المعيارية(ز) للمتغير س = ٧٢٫٥',opts:['−١٠٫٥','−١٠٫٠','١٠٫٥','−١٫٥'],hint:'ز=(٧٢٫٥−٨٣)/٧=−١٠٫<span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.9em;line-height:1.1;margin:0 2px"><span style="border-bottom:1.5px solid currentColor;padding:0 3px">٥</span><span style="padding:0 3px">٧</span></span>=−١٫٥'},
+  {u:'u6',pts:5,ans:1,text:'س ~ ط(٢٠، ع²)، ل(س > ٢٤)=٠٫٩٨٦٤ • قيمة ع لأقرب منزلتين',opts:['١٫٦٠','١٫٨١','٢٫٥٦','٣٫٢٨'],hint:'ز=(٢٤−٢٠)/ع → ع≈١٫٨١'},
+  {u:'u6',pts:5,ans:0,text:'س ~ ط(١٢، ع²)، ل(س ≥ ب) = ٠٫٨٦٤٣ • قيمة ب',opts:['٧٫٦','٢٫٢','١٣٫١','١٤٫٢'],hint:'ز=(ب−١٢)/٤=−١٫١ → ب=١٢−٤٫٤=٧٫٦'},
+  {u:'u6',pts:7,ans:3,text:'تقدم ٣٠٠ شخص لوظيفة، نتائج القبول ط(٦٠، ٢٥) • عدد الحاصلين على أقل من ٦٢٫٢',opts:['٢٠١','١٦١','١٣٩','١٣٢'],hint:'ز=(٦٢٫٢−٦٠)/٥=٠٫٤٤ → ل(ز<٠٫٤٤)≈٠٫٦٧ → ٣٠٠×٠٫٤٤=١٣٢'},
   {u:'u6',pts:5,ans:1,text:'ز ~ ط(١،٠)، ل(ز < أ) = ٠٫٠٤١٨ • قيمة أ',opts:['٠٫٩٠٨٢','−١٫٧٣','١٫٧٣','−٠٫٩٥'],hint:'ل(ز<أ)=٠٫٠٤١٨ < ٠٫٥ → أ سالب → أ = −١٫٧٣'},
   {u:'u6',pts:5,ans:2,text:'س ~ ط(و، ١)، ل(س > ٥) = ٠٫٩٢٣٦ • قيمة و',opts:['٠٫٧١','٦٫٠٠','٦٫٤٣','٣٫٥٠'],hint:'ل(ز>(٥−و)/١)=٠٫٩٢٣٦ → (٥−و)=−١٫٤٣ → و≈٦٫٤٣'},
-  {u:'u6',pts:5,ans:2,text:'أطوال ٥٠٠ طالب ~ ط(١٦٥، ٢٥) • نسبة الطلاب الذين يزيد طولهم عن ١٧٠',opts:['٨٤٫١٣٪','٥٠٪','١٥٫٨٧٪','٣٤٫١٣٪'],hint:'ز=(١٧٠−١٦٥)/٥=١ → ل(ز>١)=١−٠٫٨٤١٣=٠٫١٥٨٧ = ١٥٫٨٧٪'}
+  {u:'u6',pts:5,ans:0,text:'س ~ ط(٢٠، ع²)، ل(٢٤≤س)=٠٫٩٨٧٢ • قيمة ع²',opts:['٣٫٠٦','١٫٧٥','٤٫٠٠','٢٫٢٥'],hint:'ز=(٢٤−٢٠)/ع=−٢٫٢٤ → ع=١٫٧٩ → ع²≈٣٫٠٦'}
 ];
 
 let S = {name:'',gender:'',city:'',qi:0,chosen:new Array(QS.length).fill(null),surveyData:{},starVal:0,answers:[],score:0,correct:0,wrong:0};
@@ -474,6 +473,7 @@ function finishSurvey() {
     S.answers.push({text:q.text,ok,chosen:ch!==null?q.opts[ch]:'•',right:q.opts[q.ans],hint:q.hint,unit:q.u,pts:ok?q.pts:0});
   });
   allStudents.push(JSON.parse(JSON.stringify(S)));
+  if(typeof window.saveStudentResult === 'function') window.saveStudentResult(S);
   buildResult(); prevPage='pg-result'; show('pg-result');
 }
 
@@ -526,26 +526,47 @@ function checkPw() {
   }
 }
 
-function buildTeacher() {
+function renderTeacherTable(students) {
   const total = QS.reduce((s,q)=>s+q.pts,0);
-  document.getElementById('t-total').textContent = allStudents.length;
-  if(!allStudents.length){ document.getElementById('t-avg').textContent='•'; document.getElementById('t-pass').textContent='•'; return; }
-  const avg = Math.round(allStudents.reduce((s,st)=>s+Math.round(st.score/total*100),0)/allStudents.length);
-  const pass = allStudents.filter(st=>Math.round(st.score/total*100)>=60).length;
+  document.getElementById('t-total').textContent = students.length;
+  if(!students.length){ document.getElementById('t-avg').textContent='•'; document.getElementById('t-pass').textContent='•'; return; }
+  const avg = Math.round(students.reduce((s,st)=>s+( st.pct !== undefined ? st.pct : Math.round(st.score/total*100) ),0)/students.length);
+  const pass = students.filter(st=>( st.pct !== undefined ? st.pct : Math.round(st.score/total*100) )>=60).length;
   document.getElementById('t-avg').textContent = avg+'%';
   document.getElementById('t-pass').textContent = pass;
   const tbody = document.getElementById('t-body'); tbody.innerHTML='';
-  allStudents.forEach(st => {
-    const pct = Math.round(st.score/total*100);
-    const usc = (['u4','u5','u6']).map(uk => {
-      const ut=QS.filter(q=>q.u===uk).reduce((s,q)=>s+q.pts,0);
-      const us=st.answers.filter(a=>a.unit===uk&&a.ok).reduce((s,a)=>s+a.pts,0);
-      return `${us}/${ut}`;
-    });
+  students.forEach(st => {
+    const pct = st.pct !== undefined ? st.pct : Math.round(st.score/total*100);
+    const u4 = st.u4 || (()=>{ const ut=QS.filter(q=>q.u==='u4').reduce((s,q)=>s+q.pts,0); const us=st.answers?st.answers.filter(a=>a.unit==='u4'&&a.ok).reduce((s,a)=>s+a.pts,0):0; return us+'/'+ut; })();
+    const u5 = st.u5 || (()=>{ const ut=QS.filter(q=>q.u==='u5').reduce((s,q)=>s+q.pts,0); const us=st.answers?st.answers.filter(a=>a.unit==='u5'&&a.ok).reduce((s,a)=>s+a.pts,0):0; return us+'/'+ut; })();
+    const u6 = st.u6 || (()=>{ const ut=QS.filter(q=>q.u==='u6').reduce((s,q)=>s+q.pts,0); const us=st.answers?st.answers.filter(a=>a.unit==='u6'&&a.ok).reduce((s,a)=>s+a.pts,0):0; return us+'/'+ut; })();
+    const diff = st.difficulty || st.surveyData && st.surveyData['s1'] || '•';
+    const prep = st.preparation || st.surveyData && st.surveyData['s2'] || '•';
+    const stars = st.stars !== undefined ? (st.stars ? '★'.repeat(st.stars) : '•') : (st.starVal ? '★'.repeat(st.starVal) : '•');
     const tr = document.createElement('tr');
-    tr.innerHTML=`<td class="tcell">${st.name}</td><td class="tcell">${st.gender}</td><td class="tcell">${st.city}</td><td class="tcell"><span class="badge ${pct>=60?'ok':'bad'}">${pct}%</span></td><td class="tcell" style="color:#185FA5;font-weight:700;">${usc[0]}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${usc[1]}</td><td class="tcell" style="color:#BA7517;font-weight:700;">${usc[2]}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${st.correct}</td><td class="tcell" style="color:#A32D2D;font-weight:700;">${st.wrong}</td><td class="tcell">${st.surveyData['s1']||'•'}</td><td class="tcell">${st.surveyData['s2']||'•'}</td><td class="tcell">${st.starVal?'★'.repeat(st.starVal):'•'}</td>`;
+    tr.innerHTML=`<td class="tcell">${st.name}</td><td class="tcell">${st.gender}</td><td class="tcell">${st.city}</td><td class="tcell"><span class="badge ${pct>=60?'ok':'bad'}">${pct}%</span></td><td class="tcell" style="color:#185FA5;font-weight:700;">${u4}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${u5}</td><td class="tcell" style="color:#BA7517;font-weight:700;">${u6}</td><td class="tcell" style="color:#3B6D11;font-weight:700;">${st.correct}</td><td class="tcell" style="color:#A32D2D;font-weight:700;">${st.wrong}</td><td class="tcell">${diff}</td><td class="tcell">${prep}</td><td class="tcell">${stars}</td>`;
     tbody.appendChild(tr);
   });
+}
+
+async function buildTeacher() {
+  const tbody = document.getElementById('t-body');
+  tbody.innerHTML = '<tr><td colspan="12" class="tcell" style="text-align:center;color:#888;">⏳ جاري التحميل...</td></tr>';
+  document.getElementById('t-total').textContent = '...';
+  document.getElementById('t-avg').textContent = '...';
+  document.getElementById('t-pass').textContent = '...';
+  
+  let firestoreStudents = [];
+  if(typeof window.loadStudentsFromFirestore === 'function') {
+    firestoreStudents = await window.loadStudentsFromFirestore();
+  }
+  
+  // دمج البيانات: Firestore + الجلسة الحالية (تجنب التكرار بالاسم والوقت)
+  const firestoreNames = new Set(firestoreStudents.map(s=>s.name+'_'+s.timestamp));
+  const sessionOnly = allStudents.filter(s => !firestoreNames.has(s.name+'_'+(s.timestamp||'')));
+  const combined = [...firestoreStudents, ...sessionOnly];
+  
+  renderTeacherTable(combined);
 }
 
 function restart() {
@@ -556,6 +577,73 @@ function restart() {
   document.querySelectorAll('.star').forEach(s=>s.classList.remove('lit'));
   prevPage='pg-reg'; show('pg-reg');
 }
+</script>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtH3Jwm8GBXJ8OscpLVQ10tE2GANT7gaw",
+    authDomain: "math-5197d.firebaseapp.com",
+    projectId: "math-5197d",
+    storageBucket: "math-5197d.firebasestorage.app",
+    messagingSenderId: "785772364642",
+    appId: "1:785772364642:web:58407e064eed7ada3ee23b",
+    measurementId: "G-ZKCNBKLFGJ"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // حفظ نتيجة الطالب في Firestore
+  window.saveStudentResult = async function(studentData) {
+    try {
+      const total = QS.reduce((s,q)=>s+q.pts,0);
+      const pct = Math.round(studentData.score/total*100);
+      const uScores = {};
+      ['u4','u5','u6'].forEach(uk => {
+        const ut = QS.filter(q=>q.u===uk).reduce((s,q)=>s+q.pts,0);
+        const us = studentData.answers.filter(a=>a.unit===uk&&a.ok).reduce((s,a)=>s+a.pts,0);
+        uScores[uk] = `${us}/${ut}`;
+      });
+      await addDoc(collection(db, "results"), {
+        name: studentData.name,
+        gender: studentData.gender,
+        city: studentData.city,
+        score: studentData.score,
+        total: total,
+        pct: pct,
+        correct: studentData.correct,
+        wrong: studentData.wrong,
+        u4: uScores['u4'],
+        u5: uScores['u5'],
+        u6: uScores['u6'],
+        difficulty: studentData.surveyData['s1'] || '•',
+        preparation: studentData.surveyData['s2'] || '•',
+        stars: studentData.starVal || 0,
+        timestamp: new Date().toISOString()
+      });
+      console.log("✅ تم حفظ النتيجة في Firestore");
+    } catch(e) {
+      console.error("❌ خطأ في الحفظ:", e);
+    }
+  };
+
+  // تحميل نتائج الطلاب من Firestore للوحة المعلم
+  window.loadStudentsFromFirestore = async function() {
+    try {
+      const q = query(collection(db, "results"), orderBy("timestamp", "desc"));
+      const snapshot = await getDocs(q);
+      const students = [];
+      snapshot.forEach(doc => students.push(doc.data()));
+      return students;
+    } catch(e) {
+      console.error("❌ خطأ في التحميل:", e);
+      return [];
+    }
+  };
 </script>
 </body>
 </html>
